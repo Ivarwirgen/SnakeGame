@@ -51,6 +51,7 @@ let food = {
 let score = 0;
 
 
+
 let d;
 
 document.addEventListener("keydown",direction);
@@ -71,27 +72,6 @@ function direction(event){
         right.play();
 
     }else if(key == 40 && d != "UP"){
-        d = "DOWN";
-        down.play();
-    }
-}
-
-function direction(event){
-    let key = event.keyCode;
-
-    if( key ==  65 && d != "RIGHT"){
-        left.play();
-        d = "LEFT";
-
-    }else if(key == 87 && d != "DOWN"){
-        d = "UP";
-        up.play();
-
-    }else if(key == 68 && d != "LEFT"){
-        d = "RIGHT";
-        right.play();
-
-    }else if(key == 83 && d != "UP"){
         d = "DOWN";
         down.play();
     }
@@ -123,16 +103,15 @@ function draw(){
     
     ctx.drawImage(foodImg, food.x, food.y);
     
-    
+  
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
     
-
+   
     if( d == "LEFT") snakeX -= box;
     if( d == "UP") snakeY -= box;
     if( d == "RIGHT") snakeX += box;
     if( d == "DOWN") snakeY += box;
-    
     
     if(snakeX == food.x && snakeY == food.y){
         score++;
@@ -141,7 +120,7 @@ function draw(){
             x : Math.floor(Math.random()* 21 + 1) * box,
             y : Math.floor(Math.random()* 15 + 3) * box
 
-
+        
     }
 
     }else{
@@ -155,7 +134,7 @@ function draw(){
         y : snakeY
     }
 
-   
+    
     if(snakeX < box * 0 || snakeX > 21 * box || snakeY < 0 * box || snakeY > 21*box || collision(newHead,snake)){
         clearInterval(game);
         dead.play();
